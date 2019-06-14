@@ -1,16 +1,16 @@
 ## Smallball
 
-A tiny interactive physics simulation as a 400 byte HTML file.
+A tiny interactive physics simulation as a 395 byte HTML file.
 
 ### [View it live](https://jaburns.github.io/smallball/)
 
 ### Final source
 ```
-<p onclick='k+=.03'><a id=A><script>let x=.3,y=-.7,j=0,k=0,z,a,f=(h,i)=>A.style[h]=238*
-(1+i)+'px';setInterval(()=>{k+=5e-4;x+=j;y+=k;z=x*x+y*y;z>1&&(z=Math.sqrt(z),x/=z,y/=z,
-a=-.8*(j*x+k*y),z=j*y-k*x,j=a*x+z*y,k=a*y-z*x);f('left',x);f('top',y)},5);</script>
-<style>p,a{cursor:pointer;position:absolute;border-radius:50%;height:500px;width:500px;
-background:#444}a{height:24px;width:24px;background:#fff
+<p onclick=k+=.03><a id=A><script>let x=.5,y=0,j=0,k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i)
++'px';setInterval(_=>{k+=5e-4;x+=j;y+=k;z=x*x+y*y;z>1&&(z=Math.sqrt(z),x/=z,y/=z,a=-.8*(
+j*x+k*y),z=j*y-k*x,j=a*x+z*y,k=a*y-z*x);f('left',x);f('top',y)},5);</script><style>p,a{
+cursor:pointer;position:absolute;border-radius:50%;height:500px;width:500px;background:
+#444}a{height:24px;width:24px;background:#fff
 ```
 
 ### Source with whitespace and comments
@@ -19,7 +19,7 @@ background:#444}a{height:24px;width:24px;background:#fff
 ```html
 <!-- The large circle is the p element, and the ball is the nested anchor element. -->
 <!-- k is the y-velocity of the ball, so clicking knocks it downwards -->
-<p onclick='k+=.03'><a id=A>
+<p onclick=k+=.03><a id=A>
 ```
 
 #### CSS
@@ -42,13 +42,13 @@ a {
 
 #### Javascript
 ```javascript
-let x =  .3, // x and y always hold the position of the ball.
-    y = -.7,
+let x = .5, // x and y always hold the position of the ball.
+    y = 0,
 
     j = 0, // j and k always hold the velocity.
     k = 0,
 
-    z,a, // z and a are just scratch variables.
+    z, a, // z and a are just scratch variables.
 
     // This function, f, is used to move the ball element to the correct position in the document.
     // The coordinate system we use for the simulation has (0,0) at the center of the big circle,
@@ -60,11 +60,11 @@ let x =  .3, // x and y always hold the position of the ball.
     //
     // Also, we can just access the ball element by the global variable 'A' because elements with
     // id attributes are accessible via global variables automatically.
-    
+
     f = (h, i) => A.style[h] = 238*(1+i) + 'px';
 
 // Now we define the main loop, which is triggered at regular intervals.
-setInterval(() =>
+setInterval(_ =>
 {
     // Add some gravity to y-velocity, and add the velocity components to the position components.
     k += 5e-4;
@@ -117,3 +117,7 @@ setInterval(() =>
 // to do math with delta time.
 },5);
 ```
+
+#### Thanks
+ - [PawkaHub](https://github.com/PawkaHub) for the tip about elements being accessible via global variables and not needing to close the style tag.
+
