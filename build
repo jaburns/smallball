@@ -43,7 +43,7 @@ main() {
     local readme="$(print_readme_with_new_final_source "$output" | update_size_in_readme "$new_size")"
 
     printf %s "$output" > index.html
-    printf %s "$readme\n" > README.md
+    echo "$readme" > README.md
 }
 
 main

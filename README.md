@@ -5,17 +5,6 @@ A tiny interactive physics simulation as a 395 byte HTML file.
 ### [View it live](https://jaburns.github.io/smallball/)
 
 ### Final source
-```
-<p onclick=k+=.03><a id=A><script>let x=.5,y=0,j=0,k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i)
-+'px';setInterval(_=>{k+=5e-4;x+=j;y+=k;z=x*x+y*y;z>1&&(z=Math.sqrt(z),x/=z,y/=z,a=-.8*(
-j*x+k*y),z=j*y-k*x,j=a*x+z*y,k=a*y-z*x);f('left',x);f('top',y)},5);</script><style>p,a{
-cursor:pointer;position:absolute;border-radius:50%;height:500px;width:500px;background:
-#444}a{height:24px;width:24px;background:#fff
-```
-
-### Source with whitespace and comments
-
-#### HTML
 ```html
 <p onclick=k+=.03><a id=A><script>let x=.5,y=0,j=0,k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i)+'px';setInterval(_=>{
 k+=5e-4;x+=j;y+=k;z=x*x+y*y;z>1&&(z=Math.sqrt(z),x/=z,y/=z,a=-.8*(j*x+k*y),z=j*y-k*x,j=a*x+z*y,k=a*y-z*x);f('l
@@ -130,4 +119,3 @@ setInterval(_ =>
 
 ### Thanks
  - [PawkaHub](https://github.com/PawkaHub) for the tip about elements being accessible via global variables and not needing to close the style tag.
-
