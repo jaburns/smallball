@@ -1,6 +1,6 @@
 ## Smallball
 
-A tiny interactive physics simulation as an HTML file weighing under half a kilobyte.
+A tiny interactive physics simulation as a 400 byte HTML file.
 
 ### [View it live](https://jaburns.github.io/smallball/)
 
