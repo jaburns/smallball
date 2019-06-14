@@ -58,7 +58,10 @@ let x =  .3, // x and y always hold the position of the ball.
     //
     //   238 = 250 (large circle radius) - 12 (ball radius)
     //
-    f = (h,i) => A.style[h] = 238*(1+i) + 'px';
+    // Also, we can just access the ball element by the global variable 'A' because elements with
+    // id attributes are accessible via global variables automatically.
+    
+    f = (h, i) => A.style[h] = 238*(1+i) + 'px';
 
 // Now we define the main loop, which is triggered at regular intervals.
 setInterval(() =>
