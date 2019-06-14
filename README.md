@@ -118,6 +118,6 @@ setInterval(_ =>
 },5);
 ```
 
-#### Thanks
+### Thanks
  - [PawkaHub](https://github.com/PawkaHub) for the tip about elements being accessible via global variables and not needing to close the style tag.
 
