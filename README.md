@@ -1,3 +1,7 @@
+## Smallball
+
+A tiny interactive physics simulation as an HTML file weighing under half a kilobyte.
+
 ### [View it live](https://jaburns.github.io/smallball/)
 
 ### Source with whitespace and comments
@@ -5,14 +9,15 @@
 #### CSS
 ```css
 body {
-    margin:9px 0 0 9px
+    margin:20px 0 0 20px
 }
 a {
     width: 500px;
     height: 500px;
     background: #444;
     border-radius: 50%;
-    position: absolute
+    position: absolute;
+    cursor: pointer
 }
 #x {
     height: 24px;
@@ -29,7 +34,9 @@ a {
 
 #### Javascript
 ```javascript
-let x =  .3, // x and y always hold the position of the ball.
+let D = document,
+
+    x =  .3, // x and y always hold the position of the ball.
     y = -.7,
 
     j = 0, // j and k always hold the velocity.
@@ -46,15 +53,15 @@ let x =  .3, // x and y always hold the position of the ball.
     //  Magic numbers:
     //   238 = 250 (outer circle radius)
     //       -  12 (inner circle radius)
-    //   247 = 238 + 9 (document margin)
+    //   258 = 238 + 20 (document margin)
     //
-    f = (h, i) => document.getElementById('x').style[h]=247+238*i+'px',
+    f = (h, i) => D.getElementById('x').style[h]=258+238*i+'px',
 
     // The g() function defined here is the main loop, and it's called at regular intervals.
     g = () =>
     {
         // Add some gravity to y-velocity, and add the velocity components to the position components.
-        k += .001;
+        k += 5e-4;
         x += j;
         y += k;
 
@@ -99,16 +106,14 @@ let x =  .3, // x and y always hold the position of the ball.
         // Move the ball element to its newly simulated position.
         f('left', x);
         f('top', y)
-    },
+    };
 
-    // We'll call this twice, so let's alias it.
-    I = setInterval;
+// Here we set the main loop to fire at 200 Hz so it looks smooth at any refresh rate without having
+// to do math with delta time in requestAnimationFrame.
+setInterval(g, 5);
 
-// Here we set the main loop to fire at 60 Hz. 17 =~ 1000 / 60.
-I(g, 17);
-
-// And every 5 seconds we knock the ball upwards a bit to keep it interesting.
-I(() => k -= .1, 5e3)
+// Knock the ball downwards a bit if the user clicks anywhere on the page.
+D.onclick=()=>k+=.03
 
 // That's it!
 ```

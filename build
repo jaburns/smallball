@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# This script generates index.html from README.md
+
 get_chunk() {
     sed -n "/\`\`\`${1}/,/\`\`\`/p" | sed '1d;$d'
 }
@@ -13,7 +15,7 @@ min_css() {
 }
 
 min_js() {
-    sed 's/\/\/.*$//' | join_lines_remove_spaces | sed 's/letx/let x/'
+    sed 's/\/\/.*$//' | join_lines_remove_spaces | sed 's/letD/let D/'
 }
 
 min_html() {
