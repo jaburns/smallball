@@ -6,16 +6,8 @@ get_chunk() {
     sed -n "/\`\`\`${1}/,/\`\`\`/p" | sed '1d;$d'
 }
 
-join_lines_remove_spaces() {
-    tr '\n' ' ' | sed 's/ //g'
-}
-
-min_css() {
-    sed 's/^ *//g;/margin:/s/ /_/g' | join_lines_remove_spaces | tr _ ' '
-}
-
-min_js() {
-    sed 's/\/\/.*$//' | join_lines_remove_spaces | sed 's/letD/let D/'
+min_code() {
+    sed 's/\/\/.*$//' | tr '\n' ' ' | sed 's/ //g' | sed 's/letx/let x/'
 }
 
 min_html() {
@@ -23,11 +15,11 @@ min_html() {
 }
 
 print_output() {
-    local css="$(cat README.md | get_chunk css | min_css)"
+    local css="$(cat README.md | get_chunk css | min_code)"
     local html="$(cat README.md | get_chunk html | min_html)"
-    local js="$(cat README.md | get_chunk javascript | min_js)"
+    local js="$(cat README.md | get_chunk javascript | min_code)"
 
-    printf %s "<!DOCTYPE html><style>$css</style>$html<script>$js</script>"
+    printf %s "$html<script>$js</script><style>$css"
 }
 
 print_output > index.html
