@@ -14,12 +14,36 @@ min_html() {
     grep -v '<!--'
 }
 
+lines_after() {
+    sed "1,/$1/d"
+}
+
 print_output() {
     local css="$(cat README.md | get_chunk css | min_code)"
-    local html="$(cat README.md | get_chunk html | min_html)"
+    local html="$(cat README.md | lines_after whitespace | get_chunk html | min_html)"
     local js="$(cat README.md | get_chunk javascript | min_code)"
 
     printf %s "$html<script>$js</script><style>$css"
 }
 
-print_output > index.html
+print_readme_with_new_final_source() {
+    sed '/```html/q' README.md
+    echo "$1" | fold -w 110
+    echo '```'
+    sed '1,/^```$/d' README.md
+}
+
+update_size_in_readme() {
+    sed "/interactive physics simulation/s/[0-9]* byte/$1 byte/"
+}
+
+main() {
+    local output="$(print_output)"
+    local new_size="$(printf %s "$output" | wc -c)"
+    local readme="$(print_readme_with_new_final_source "$output" | update_size_in_readme "$new_size")"
+
+    printf %s "$output" > index.html
+    printf %s "$readme" > README.md
+}
+
+main
