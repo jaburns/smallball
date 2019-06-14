@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# This script generates index.html from README.md
+# This script generates index.html from code sections in README.md and then updates
+# the "Final source" section as well as the file size mentioned in the README.
 
 get_chunk() {
     sed -n "/\`\`\`${1}/,/\`\`\`/p" | sed '1d;$d'
