@@ -1,6 +1,6 @@
 ## Smallball
 
-A tiny interactive physics simulation in a 383 byte HTML file.
+A tiny interactive physics simulation in a 376 byte HTML file.
 
 Click the mouse to provide a downward impulse to the ball.
 
@@ -8,10 +8,10 @@ Click the mouse to provide a downward impulse to the ball.
 
 ### Final source
 ```html
-<p onclick=k+=.03><a id=A><script>let y=0,j=0,k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i)+'px',x=setInterval(_=>f('l
-eft',x)|f('top',y)|(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+z*y,k
-=z*x-a*y),5)</script><style>p,a{cursor:pointer;position:absolute;border-radius:50%;height:500px;width:500px;ba
-ckground:#437}a{height:24px;width:24px;background:tan
+<p onclick=k+=.03><a id=A><script>let y=j=k=0,z,a,f=(h,i)=>{A.style[h]=238*(1+i)},x=setInterval(_=>f('left',x)
+|f('top',y)|(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+z*y,k=z*x-a*
+y),5)</script><style>p,a{cursor:pointer;position:absolute;border-radius:50%;height:500px;width:500px;backgroun
+d:#437}a{height:24px;width:24px;background:tan
 ```
 
 ### Source with whitespace and comments
@@ -44,9 +44,9 @@ a {
 #### Javascript
 ```javascript
 
-let y = 0, // x and y always hold the position of the ball. x is defined a bit later.
+let y =    // x and y always hold the position of the ball. x is defined a bit later.
 
-    j = 0, // j holds the negative x-velocity of the ball. 
+    j =    // j holds the negative x-velocity of the ball. 
     k = 0, // k holds the positive y-velocity.
 
     // Storing one of the velocity components as a negative value saves a negative sign in
@@ -64,7 +64,7 @@ let y = 0, // x and y always hold the position of the ball. x is defined a bit l
     //
     // Also, we can just access the ball element by the global variable 'A' because elements with
     // id attributes are accessible via global variables automatically.
-    f = (h, i) => A.style[h] = 238*(1+i) + 'px',
+    f = (h, i) => { A.style[h] = 238*(1+i) },
 
     // Now we define x, the ball's horizontal position, and initialize it to the result of the
     // setInterval we use to call the main loop. setInterval returns a non-zero integer whose
