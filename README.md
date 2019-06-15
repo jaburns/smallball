@@ -66,9 +66,6 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
     // id attributes are accessible via global variables automatically.
     f = (h, i) => A.style[h] = 238*(1+i),
 
-    // TODO the curly braces are needed so that f doesn't return a number and fuck up the bitwise
-    // OR chain in the main loop. Must be a smaller way to do that
-
     // Now we define x, the ball's horizontal position, and initialize it to the result of the
     // setInterval we use to call the main loop. setInterval returns a non-zero integer whose
     // exact value depends on the browser implementation, but since the position is bounds checked
