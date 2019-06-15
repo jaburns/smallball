@@ -7,11 +7,11 @@ Click the mouse to provide a downward impulse to the ball.
 ### [View it live](https://jaburns.github.io/smallball/)
 
 ### Final source
-```html
-<p onclick=k+=.03><a id=A><style onload="let y=j=k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i),x=setInterval(_=>f('lef
-t',x)|f('top',y)&&(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+z*y,k=
-z*x-a*y),5)">p,a{cursor:pointer;position:absolute;border-radius:50%;height:500;width:500;background:#437}a{hei
-ght:24;width:24;background:tan
+```
+<p onclick=k+=.03><a id=A><style onload="let y=j=k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i),x=setInterval
+(_=>f('left',x)|f('top',y)&&(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=
+k*x+j*y,j=a*x+z*y,k=z*x-a*y),5)">p,a{cursor:pointer;position:absolute;border-radius:50%;height:500;w
+idth:500;background:#437}a{height:24;width:24;background:tan
 ```
 
 ### Source with whitespace and comments
@@ -46,7 +46,7 @@ a {
 
 let y =    // x and y always hold the position of the ball. x is defined a bit later.
 
-    j =    // j holds the negative x-velocity of the ball. 
+    j =    // j holds the negative x-velocity of the ball.
     k = 0, // k holds the positive y-velocity.
 
     // Storing one of the velocity components as a negative value saves a negative sign in
@@ -75,7 +75,7 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
     // right away it doesn't really matter what the value is. Initializing x this way saves a few
     // bytes of declaration. Additionally, the body of the loop function iteself is a single
     // statement so we don't need curly braces.
-    x = setInterval(_ => 
+    x = setInterval(_ =>
 
       // Move the ball element to the simulated position (x,y). We're chaining these statements together
       // with bitwise OR here to give a value that will virtually always be truthy so that the next
