@@ -1,6 +1,8 @@
 ## Smallball
 
-A tiny interactive physics simulation in a 383 byte HTML file. Click the mouse to provide a downward force to the ball.
+A tiny interactive physics simulation in a 383 byte HTML file.
+
+Click the mouse to provide a downward impulse to the ball.
 
 ### [View it live](https://jaburns.github.io/smallball/)
 
