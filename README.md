@@ -86,7 +86,7 @@ let y = 0, // x and y always hold the position of the ball. x is defined a bit l
       // square or otherwise, is greater than one, we're past the edge of the circle.
       > 1 && (
           // Get the actual distance from the center in to z and use this length to normalize the
-          // position vector. Since in our coordinate space a unit of distance equals the large
+          // position vector. Since, in our coordinate space, a unit of distance equals the large
           // circle radius minus the ball radius, this puts us nicely on the edge of the circle.
           x /= z = Math.sqrt(z),
           y /= z,
