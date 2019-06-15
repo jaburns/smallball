@@ -24,7 +24,7 @@ print_output() {
     local html="$(cat README.md | lines_after whitespace | get_chunk html | min_html)"
     local js="$(cat README.md | get_chunk javascript | min_code)"
 
-    printf %s "$html<script>$js</script><style>$css"
+    printf %s "$html<style onload=\"$js\">$css"
 }
 
 print_readme_with_new_final_source() {

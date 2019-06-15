@@ -1,6 +1,6 @@
 ## Smallball
 
-A tiny interactive physics simulation in a 376 byte HTML file.
+A tiny interactive physics simulation in a 360 byte HTML file.
 
 Click the mouse to provide a downward impulse to the ball.
 
@@ -8,10 +8,10 @@ Click the mouse to provide a downward impulse to the ball.
 
 ### Final source
 ```html
-<p onclick=k+=.03><a id=A><script>let y=j=k=0,z,a,f=(h,i)=>{A.style[h]=238*(1+i)},x=setInterval(_=>f('left',x)
-|f('top',y)|(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+z*y,k=z*x-a*
-y),5)</script><style>p,a{cursor:pointer;position:absolute;border-radius:50%;height:500px;width:500px;backgroun
-d:#437}a{height:24px;width:24px;background:tan
+<p onclick=k+=.03><a id=A><style onload="let y=j=k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i),x=setInterval(_=>f('lef
+t',x)|f('top',y)&&(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+z*y,k=
+z*x-a*y),5)">p,a{cursor:pointer;position:absolute;border-radius:50%;height:500;width:500;background:#437}a{hei
+ght:24;width:24;background:tan
 ```
 
 ### Source with whitespace and comments
@@ -29,13 +29,13 @@ p,a {
     cursor: pointer;
     position: absolute;
     border-radius: 50%;
-    height: 500px;
-    width: 500px;
+    height: 500;
+    width: 500;
     background: #437
 }
 a {
-    height: 24px;
-    width: 24px;
+    height: 24;
+    width: 24;
     background: tan
 
 // We won't bother closing the last block or even the <style> element, because we don't need to.
@@ -64,7 +64,10 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
     //
     // Also, we can just access the ball element by the global variable 'A' because elements with
     // id attributes are accessible via global variables automatically.
-    f = (h, i) => { A.style[h] = 238*(1+i) },
+    f = (h, i) => A.style[h] = 238*(1+i),
+
+    // TODO the curly braces are needed so that f doesn't return a number and fuck up the bitwise
+    // OR chain in the main loop. Must be a smaller way to do that
 
     // Now we define x, the ball's horizontal position, and initialize it to the result of the
     // setInterval we use to call the main loop. setInterval returns a non-zero integer whose
@@ -74,18 +77,20 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
     // statement so we don't need curly braces.
     x = setInterval(_ => 
 
-      // Move the ball element to the simulated position (x,y). We're chaining statements together
-      // with bitwise OR here.
+      // Move the ball element to the simulated position (x,y). We're chaining these statements together
+      // with bitwise OR here to give a value that will virtually always be truthy so that the next
+      // clause in the && will evaluate. If the ball somehow ends up in the perfect dead center of the
+      // circle the simulation will freeze.
       f('left', x) | f('top', y)
 
       // Add some gravity to y-velocity, and add the velocity vector components to the position
       // vector components. Also, we'll get the square distance of the ball's position from the
       // center in to the variable 'z'.
-      | (z = (x-=j)*x + (y+=k+=5e-4)*y)
+      && (z = (x-=j)*x + (y+=k+=5e-4)*y)
 
-      // The previous chunk of code was placed in parentheses so that we could immediately compare
-      // the result 'z' with 1 here and execute the inner block conditionally. If the distance,
-      // square or otherwise, is greater than one, we're past the edge of the circle.
+      // Now we'll compare that last clause, which has the value of 'z' to 1 and execute the next
+      // parenthesized block conditionally. If the distance, square or otherwise, is greater than
+      // one, we're past the edge of the circle.
       > 1 && (
           // Get the actual distance from the center in to z and use this length to normalize the
           // position vector. Since, in our coordinate space, a unit of distance equals the large
@@ -120,4 +125,4 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
 ```
 
 ### Thanks
- - [PawkaHub](https://github.com/PawkaHub) for the tip about elements being accessible via global variables and not needing to close the style tag.
+ - [PawkaHub](https://github.com/PawkaHub) for elements being accessible via global variables, not needing to close the style tag, and putting all the JS in an onload attribute.
