@@ -18,8 +18,9 @@ ackground:#437}b{height:24;width:24;background:tan
 
 #### HTML
 ```html
-<!-- The large circle is the p element, and the ball is the nested anchor element. -->
+<!-- The large circle is the a element, and the ball is the nested b element. -->
 <!-- k is the y-velocity of the ball, so clicking knocks it downwards -->
+<!-- The href attribute gives us the pointer cursor on mouse over -->
 <a onclick=k+=.03 href=#><b id=A>
 ```
 
