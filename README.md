@@ -7,11 +7,11 @@ Click the mouse to provide a downward impulse to the ball.
 ### [View it live](https://jaburns.github.io/smallball/)
 
 ### Final source
-```html
-<a onclick=k+=.03 href=#><b id=A><style onload="let y=j=k=0,a,f=(h,i)=>A.style[h]=238*(1+i),x=setInterval(z=>f
-('left',x)|f('top',y)&&(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+z
-*y,k=z*x-a*y),5)">b,a{position:absolute;border-radius:50%;height:500;width:500;background:#437}b{height:24;wid
-th:24;background:tan
+```
+<a onclick=k+=.03 href=#><b id=A><style onload="let y=j=k=0,a,f=(h,i)=>A.style[h]=238*(1+i),x=setInt
+erval(z=>f('left',x)|f('top',y)&&(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*
+x),z=k*x+j*y,j=a*x+z*y,k=z*x-a*y),5)">b,a{position:absolute;border-radius:50%;height:500;width:500;b
+ackground:#437}b{height:24;width:24;background:tan
 ```
 
 ### Source with whitespace and comments
@@ -36,7 +36,6 @@ b {
     height: 24;
     width: 24;
     background: tan
-
 // We won't bother closing the last block or even the <style> element, because we don't need to.
 ```
 
@@ -71,11 +70,7 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
     // right away it doesn't really matter what the value is. Initializing x this way saves a few
     // bytes of declaration. Additionally, the body of the loop function iteself is a single
     // statement so we don't need curly braces.
-<<<<<<< HEAD
-    x = setInterval(_ =>
-=======
     x = setInterval(z => 
->>>>>>> 350
 
       // Move the ball element to the simulated position (x,y). We're chaining these statements together
       // with bitwise OR here to give a value that will virtually always be truthy so that the next
