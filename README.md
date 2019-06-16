@@ -1,17 +1,17 @@
 ## Smallball
 
-A tiny interactive physics simulation in a 360 byte HTML file.
+A tiny interactive physics simulation in a 350 byte HTML file.
 
 Click the mouse to provide a downward impulse to the ball.
 
 ### [View it live](https://jaburns.github.io/smallball/)
 
 ### Final source
-```
-<p onclick=k+=.03><a id=A><style onload="let y=j=k=0,z,a,f=(h,i)=>A.style[h]=238*(1+i),x=setInterval
-(_=>f('left',x)|f('top',y)&&(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=
-k*x+j*y,j=a*x+z*y,k=z*x-a*y),5)">p,a{cursor:pointer;position:absolute;border-radius:50%;height:500;w
-idth:500;background:#437}a{height:24;width:24;background:tan
+```html
+<a onclick=k+=.03 href=#><b id=A><style onload="let y=j=k=0,a,f=(h,i)=>A.style[h]=238*(1+i),x=setInterval(z=>f
+('left',x)|f('top',y)&&(z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+z
+*y,k=z*x-a*y),5)">b,a{position:absolute;border-radius:50%;height:500;width:500;background:#437}b{height:24;wid
+th:24;background:tan
 ```
 
 ### Source with whitespace and comments
@@ -20,20 +20,19 @@ idth:500;background:#437}a{height:24;width:24;background:tan
 ```html
 <!-- The large circle is the p element, and the ball is the nested anchor element. -->
 <!-- k is the y-velocity of the ball, so clicking knocks it downwards -->
-<p onclick=k+=.03><a id=A>
+<a onclick=k+=.03 href=#><b id=A>
 ```
 
 #### CSS
 ```css
-p,a {
-    cursor: pointer;
+b,a {
     position: absolute;
     border-radius: 50%;
     height: 500;
     width: 500;
     background: #437
 }
-a {
+b {
     height: 24;
     width: 24;
     background: tan
@@ -52,7 +51,7 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
     // Storing one of the velocity components as a negative value saves a negative sign in
     // the collision math later.
 
-    z, a, // z and a are just scratch variables.
+    a, // We need this later as a scratch variable
 
     // This function, f, is used to move the ball element to the correct position in the document.
     // The coordinate system we use for the simulation has (0,0) at the center of the big circle,
@@ -72,17 +71,21 @@ let y =    // x and y always hold the position of the ball. x is defined a bit l
     // right away it doesn't really matter what the value is. Initializing x this way saves a few
     // bytes of declaration. Additionally, the body of the loop function iteself is a single
     // statement so we don't need curly braces.
+<<<<<<< HEAD
     x = setInterval(_ =>
+=======
+    x = setInterval(z => 
+>>>>>>> 350
 
       // Move the ball element to the simulated position (x,y). We're chaining these statements together
       // with bitwise OR here to give a value that will virtually always be truthy so that the next
       // clause in the && will evaluate. If the ball somehow ends up in the perfect dead center of the
       // circle the simulation will freeze.
-      f('left', x) | f('top', y)
+      f('left',x) | f('top',y)
 
       // Add some gravity to y-velocity, and add the velocity vector components to the position
       // vector components. Also, we'll get the square distance of the ball's position from the
-      // center in to the variable 'z'.
+      // center in to the variable 'z' we defined as a function parameter.
       && (z = (x-=j)*x + (y+=k+=5e-4)*y)
 
       // Now we'll compare that last clause, which has the value of 'z' to 1 and execute the next
