@@ -8,7 +8,7 @@ Click the mouse to provide a downward impulse to the ball.
 
 ### Final source
 ```
-<a onclick=k+=.03 href=#><b id=A><style onload="y=j=k=0,f=A.style,x=F=238;setInterval(z=>(f.left=F+F
+<a onclick=k+=.03 href=#><b id=A><style onload="y=j=k=0;x=F=238;setInterval(_=>((f=A.style).left=F+F
 *x,f.top=F+F*y,z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+
 z*y,k=z*x-a*y),5)">b,a{position:absolute;border-radius:50%;height:500;width:500;background:#437}b{he
 ight:24;width:24;background:tan
@@ -46,22 +46,17 @@ b {
 y =    // x and y always hold the position of the ball. x is defined a bit later.
 
 j =    // j holds the negative x-velocity of the ball.
-k = 0, // k holds the positive y-velocity.
+k = 0; // k holds the positive y-velocity.
 
 // Storing one of the velocity components as a negative value saves a negative sign in
 // the collision math later.
-
-// we can just access the ball element by the global variable 'A' because elements with
-// id attributes are accessible via global variables automatically.
-f = A.style,
 
 // Initialize x position and a coordinate transormation constant we'll need later.
 x = F = 238;
 
 // Now we define the main loop, triggered at regular intervals. The body of the loop function
-// iteself is a single statement so we don't need curly braces. z is a variable we'll assign
-// to later, declaring it as the sole function parameter saves some bytes.
-setInterval(z =>
+// iteself is a single statement so we don't need curly braces.
+setInterval(_ =>
     (
         // Move the ball element to the simulated position (x,y). The coordinate system we use for
         // the simulation has (0,0) at the center of the big circle, and one unit of distance is
@@ -69,7 +64,7 @@ setInterval(z =>
         // means that if the ball is at (1,0) it should be touching the right wall of the outer
         // circle, but not passing through it.
         //     F = 238 = 250 (large circle radius) - 12 (ball radius)
-        f.left = F+F*x,
+        (f=A.style).left = F+F*x,
         f.top = F+F*y,
 
         // Add some gravity to y-velocity, and add the velocity vector components to the position
