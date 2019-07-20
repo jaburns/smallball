@@ -8,7 +8,7 @@ get_chunk() {
 }
 
 min_code() {
-    sed 's/\/\/.*$//' | tr '\n' ' ' | sed 's/ //g' | sed 's/lety/let y/'
+    sed 's/\/\/.*$//' | tr '\n' ' ' | sed 's/ //g'
 }
 
 min_html() {
