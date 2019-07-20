@@ -43,20 +43,20 @@ b {
 #### Javascript
 ```javascript
 
-    y =    // x and y always hold the position of the ball. x is defined a bit later.
+y =    // x and y always hold the position of the ball. x is defined a bit later.
 
-    j =    // j holds the negative x-velocity of the ball.
-    k = 0, // k holds the positive y-velocity.
+j =    // j holds the negative x-velocity of the ball.
+k = 0, // k holds the positive y-velocity.
 
-    // Storing one of the velocity components as a negative value saves a negative sign in
-    // the collision math later.
+// Storing one of the velocity components as a negative value saves a negative sign in
+// the collision math later.
 
-    // we can just access the ball element by the global variable 'A' because elements with
-    // id attributes are accessible via global variables automatically.
-    f = A.style,
+// we can just access the ball element by the global variable 'A' because elements with
+// id attributes are accessible via global variables automatically.
+f = A.style,
 
-    // Initialize x position and a coordinate transormation constant we'll need later.
-    x = F = 238;
+// Initialize x position and a coordinate transormation constant we'll need later.
+x = F = 238;
 
 // Now we define the main loop, triggered at regular intervals. The body of the loop function
 // iteself is a single statement so we don't need curly braces. z is a variable we'll assign
