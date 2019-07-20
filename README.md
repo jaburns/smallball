@@ -1,6 +1,6 @@
 ## Smallball
 
-A tiny interactive physics simulation in a 337 byte HTML file.
+A tiny interactive physics simulation in a 331 byte HTML file.
 
 Click the mouse to provide a downward impulse to the ball.
 
@@ -8,10 +8,10 @@ Click the mouse to provide a downward impulse to the ball.
 
 ### Final source
 ```
-<a onclick=k+=.03 href=#><b id=A><style onload="let y=j=k=0,a,f=A.style,x=F=238;setInterval(z=>(f.le
-ft=F+F*x,f.top=F+F*y,z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,
-j=a*x+z*y,k=z*x-a*y),5)">b,a{position:absolute;border-radius:50%;height:500;width:500;background:#43
-7}b{height:24;width:24;background:tan
+<a onclick=k+=.03 href=#><b id=A><style onload="y=j=k=0,f=A.style,x=F=238;setInterval(z=>(f.left=F+F
+*x,f.top=F+F*y,z=(x-=j)*x+(y+=k+=5e-4)*y)>1&&(x/=z=Math.sqrt(z),y/=z,a=.8*(k*y-j*x),z=k*x+j*y,j=a*x+
+z*y,k=z*x-a*y),5)">b,a{position:absolute;border-radius:50%;height:500;width:500;background:#437}b{he
+ight:24;width:24;background:tan
 ```
 
 ### Source with whitespace and comments
@@ -43,15 +43,13 @@ b {
 #### Javascript
 ```javascript
 
-let y =    // x and y always hold the position of the ball. x is defined a bit later.
+    y =    // x and y always hold the position of the ball. x is defined a bit later.
 
     j =    // j holds the negative x-velocity of the ball.
     k = 0, // k holds the positive y-velocity.
 
     // Storing one of the velocity components as a negative value saves a negative sign in
     // the collision math later.
-
-    a, // We need this later as a scratch variable
 
     // we can just access the ball element by the global variable 'A' because elements with
     // id attributes are accessible via global variables automatically.
